@@ -1,0 +1,1633 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腐剧tv入口 - 品牌官方门户,深耕原创影像内容生态</title>
+<meta name="description" content="腐剧tv入口官方网站，腐剧tv入口品牌专注原创影像内容生态，汇聚优质创作者与多元精品内容，提供高清正版内容体验与专业社区互动。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c8324b'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%23ffe9ee'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ftv-ink:#15161a;
+    --ftv-ink-soft:#4a4d57;
+    --ftv-paper:#f7f7f9;
+    --ftv-red:#c8324b;
+    --ftv-red-deep:#a12238;
+    --ftv-gold:#d9a441;
+    --ftv-line:#e2e3e8;
+    --ftv-dark:#1b1c21;
+    --ftv-radius:14px;
+    --ftv-shadow:0 8px 26px rgba(21,22,26,.08);
+    --ftv-unit:8px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--ftv-ink);
+    background:var(--ftv-paper);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  h1,h2,h3,h4{margin:0;line-height:1.3;}
+  p{margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+
+  /* 吸顶容器：公告条 + 页头 */
+  .ftv-sticky-shell{position:sticky;top:0;z-index:90;}
+  .ftv-announce{
+    background:var(--ftv-dark);
+    color:#f2e6e9;
+    font-size:13px;
+    padding:9px 20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .ftv-announce__tag{
+    flex:none;
+    background:var(--ftv-red);
+    color:#fff;
+    padding:2px 9px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:.5px;
+  }
+  .ftv-announce__marquee{overflow:hidden;flex:1;min-width:0;}
+  .ftv-announce__track{
+    display:inline-block;
+    padding-left:100%;
+    animation:ftvScroll 34s linear infinite;
+  }
+  .ftv-announce__track span{margin-right:46px;}
+  .ftv-announce__track b{color:var(--ftv-gold);font-weight:600;}
+  @keyframes ftvScroll{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+
+  .ftv-header{
+    background:rgba(247,247,249,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--ftv-line);
+  }
+  .ftv-header__inner{
+    max-width:1220px;
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    gap:26px;
+  }
+  .ftv-brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .ftv-brand__mark{
+    width:38px;height:38px;border-radius:11px;
+    background:linear-gradient(135deg,var(--ftv-red),var(--ftv-red-deep));
+    display:grid;place-items:center;
+    box-shadow:0 4px 14px rgba(200,50,75,.32);
+  }
+  .ftv-brand__name{font-size:19px;font-weight:800;letter-spacing:.5px;}
+  .ftv-brand__name em{font-style:normal;color:var(--ftv-red);}
+  .ftv-brand__sub{font-size:11px;color:var(--ftv-ink-soft);letter-spacing:2px;}
+
+  .ftv-nav{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
+  .ftv-nav__link{
+    padding:8px 13px;border-radius:9px;font-size:14.5px;color:var(--ftv-ink-soft);
+    transition:.2s;white-space:nowrap;
+  }
+  .ftv-nav__link:hover,.ftv-nav__link.is-active{color:var(--ftv-red);background:#fbeef1;}
+
+  .ftv-search{position:relative;flex:none;width:230px;}
+  .ftv-search__input{
+    width:100%;padding:9px 36px 9px 14px;border-radius:999px;
+    border:1px solid var(--ftv-line);background:#fff;font-size:13.5px;outline:none;
+    transition:.2s;
+  }
+  .ftv-search__input:focus{border-color:var(--ftv-red);box-shadow:0 0 0 3px #f7dfe4;}
+  .ftv-search__btn{
+    position:absolute;right:4px;top:4px;width:30px;height:30px;border-radius:50%;
+    display:grid;place-items:center;background:var(--ftv-red);color:#fff;font-size:13px;
+  }
+  .ftv-search__hint{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;
+    border:1px solid var(--ftv-line);border-radius:12px;box-shadow:var(--ftv-shadow);
+    padding:8px;font-size:13px;color:var(--ftv-ink-soft);display:none;
+  }
+  .ftv-search__hint.is-open{display:block;}
+  .ftv-search__hint li{padding:6px 8px;border-radius:8px;cursor:pointer;}
+  .ftv-search__hint li:hover{background:#fbeef1;color:var(--ftv-red);}
+
+  .ftv-burger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--ftv-line);background:#fff;flex-direction:column;gap:4px;align-items:center;justify-content:center;}
+  .ftv-burger span{width:18px;height:2px;background:var(--ftv-ink);border-radius:2px;transition:.2s;}
+
+  main{max-width:1220px;margin:0 auto;padding:0 24px;}
+  section{scroll-margin-top:128px;}
+
+  .ftv-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 24px;border-radius:999px;font-size:14.5px;font-weight:600;
+    transition:.2s;border:1px solid transparent;
+  }
+  .ftv-btn--primary{background:var(--ftv-red);color:#fff;box-shadow:0 6px 18px rgba(200,50,75,.28);}
+  .ftv-btn--primary:hover{background:var(--ftv-red-deep);transform:translateY(-1px);}
+  .ftv-btn--ghost{border-color:var(--ftv-line);background:#fff;color:var(--ftv-ink);}
+  .ftv-btn--ghost:hover{border-color:var(--ftv-red);color:var(--ftv-red);}
+
+  .ftv-section-head{margin-bottom:26px;}
+  .ftv-section-head__kicker{
+    font-size:12.5px;letter-spacing:3px;color:var(--ftv-red);font-weight:700;margin-bottom:8px;text-transform:uppercase;
+  }
+  .ftv-section-head__title{font-size:27px;font-weight:800;letter-spacing:.5px;}
+  .ftv-section-head__desc{color:var(--ftv-ink-soft);font-size:14.5px;margin-top:9px;max-width:720px;}
+
+  /* 首屏 */
+  .ftv-hero{padding:52px 0 20px;}
+  .ftv-hero__grid{display:grid;grid-template-columns:6fr 4fr;gap:38px;align-items:center;}
+  .ftv-hero__badge{
+    display:inline-flex;align-items:center;gap:8px;background:#fbeef1;color:var(--ftv-red);
+    padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:700;margin-bottom:18px;
+  }
+  .ftv-hero__badge i{width:7px;height:7px;border-radius:50%;background:var(--ftv-red);display:inline-block;animation:ftvPulse 1.6s infinite;}
+  @keyframes ftvPulse{0%,100%{opacity:1;}50%{opacity:.28;}}
+  h1.ftv-hero__title{font-size:clamp(30px,4.4vw,46px);font-weight:900;letter-spacing:1px;line-height:1.18;}
+  h1.ftv-hero__title span{color:var(--ftv-red);}
+  .ftv-hero__lead{margin-top:16px;font-size:15.5px;color:var(--ftv-ink-soft);max-width:560px;}
+  .ftv-hero__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
+  .ftv-hero__stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:32px;}
+  .ftv-stat__num{font-size:26px;font-weight:900;color:var(--ftv-red);font-variant-numeric:tabular-nums;}
+  .ftv-stat__label{font-size:12.5px;color:var(--ftv-ink-soft);letter-spacing:.5px;}
+
+  .ftv-hero__visual{position:relative;}
+  .ftv-hero__cover{
+    border-radius:20px;overflow:hidden;box-shadow:var(--ftv-shadow);position:relative;
+    aspect-ratio:4/3;background:var(--ftv-dark);
+  }
+  .ftv-hero__cover svg{width:100%;height:100%;}
+  .ftv-hero__play{
+    position:absolute;inset:0;display:grid;place-items:center;
+  }
+  .ftv-hero__play button{
+    width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:grid;place-items:center;box-shadow:0 8px 26px rgba(0,0,0,.3);transition:.2s;
+  }
+  .ftv-hero__play button:hover{transform:scale(1.08);}
+  .ftv-hero__play svg{width:24px;height:24px;}
+  .ftv-hero__float{
+    position:absolute;left:-14px;bottom:22px;background:#fff;border-radius:12px;
+    padding:10px 16px;box-shadow:var(--ftv-shadow);font-size:13px;display:flex;align-items:center;gap:10px;
+  }
+  .ftv-hero__float b{color:var(--ftv-red);font-size:16px;}
+
+  /* 品牌解析长文 */
+  .ftv-about{padding:56px 0 20px;}
+  .ftv-about__panel{
+    background:#fff;border:1px solid var(--ftv-line);border-radius:20px;padding:clamp(24px,4vw,46px);
+  }
+  .ftv-about__panel h2{font-size:25px;font-weight:800;margin-bottom:8px;}
+  .ftv-about__panel h2 em{font-style:normal;color:var(--ftv-red);}
+  .ftv-about__body{color:var(--ftv-ink-soft);font-size:15px;column-gap:46px;}
+  @media(min-width:900px){.ftv-about__body{columns:2;}}
+  .ftv-about__body p{margin-bottom:16px;break-inside:avoid;}
+  .ftv-about__body strong{color:var(--ftv-ink);}
+  .ftv-about__body h3{font-size:16px;color:var(--ftv-ink);margin:6px 0 8px;font-weight:700;break-inside:avoid;}
+
+  /* 焦点内容 */
+  .ftv-focus{padding:46px 0 12px;}
+  .ftv-focus__grid{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;}
+  .ftv-focus__side{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:start;}
+
+  .ftv-vcard{
+    background:#fff;border-radius:var(--ftv-radius);overflow:hidden;border:1px solid var(--ftv-line);
+    display:flex;flex-direction:column;transition:.25s;
+  }
+  .ftv-vcard:hover{transform:translateY(-4px);box-shadow:var(--ftv-shadow);border-color:#f2ccd4;}
+  .ftv-vcard__cover{position:relative;aspect-ratio:16/9;background:#22242b;overflow:hidden;}
+  .ftv-vcard__cover > svg{width:100%;height:100%;transition:.4s;}
+  .ftv-vcard:hover .ftv-vcard__cover > svg{transform:scale(1.04);}
+  .ftv-vcard__tag{
+    position:absolute;top:10px;left:10px;background:rgba(200,50,75,.94);color:#fff;
+    font-size:11.5px;padding:3px 9px;border-radius:6px;letter-spacing:.4px;
+  }
+  .ftv-vcard__time{
+    position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;
+    font-size:11.5px;padding:2px 8px;border-radius:5px;
+  }
+  .ftv-vcard__triangle{
+    position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+  }
+  .ftv-vcard__triangle svg{width:44px;height:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));}
+  .ftv-vcard__body{padding:15px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .ftv-vcard__title{font-size:15.5px;font-weight:700;line-height:1.45;}
+  .ftv-vcard__desc{font-size:13px;color:var(--ftv-ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .ftv-vcard__meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ftv-ink-soft);margin-top:auto;flex-wrap:wrap;}
+  .ftv-vcard__avatar{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#fff;font-weight:700;flex:none;}
+  .ftv-vcard__acts{display:flex;gap:8px;margin-left:auto;}
+  .ftv-vcard__act{
+    font-size:12px;padding:3px 9px;border-radius:999px;background:#f4f4f7;color:var(--ftv-ink-soft);transition:.2s;
+  }
+  .ftv-vcard__act:hover{background:#fbeef1;color:var(--ftv-red);}
+  .ftv-vcard__act.is-on{background:#fbeef1;color:var(--ftv-red);font-weight:700;}
+
+  .ftv-vcard--big .ftv-vcard__title{font-size:19px;}
+  .ftv-vcard--big .ftv-vcard__body{padding:19px 20px 20px;}
+
+  /* 专题 */
+  .ftv-topics{padding:52px 0 12px;}
+  .ftv-topics__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .ftv-topic{
+    position:relative;border-radius:var(--ftv-radius);overflow:hidden;min-height:210px;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:18px;color:#fff;
+    transition:.25s;
+  }
+  .ftv-topic:hover{transform:translateY(-4px);box-shadow:var(--ftv-shadow);}
+  .ftv-topic__bg{position:absolute;inset:0;z-index:0;}
+  .ftv-topic__bg svg{width:100%;height:100%;}
+  .ftv-topic__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.7));}
+  .ftv-topic__inner{position:relative;z-index:1;}
+  .ftv-topic__state{
+    display:inline-block;font-size:11px;background:rgba(255,255,255,.2);backdrop-filter:blur(4px);
+    padding:2px 9px;border-radius:999px;margin-bottom:8px;
+  }
+  .ftv-topic__name{font-size:16.5px;font-weight:800;}
+  .ftv-topic__desc{font-size:12.5px;opacity:.86;margin-top:5px;line-height:1.5;}
+
+  /* 创作者 */
+  .ftv-makers{padding:52px 0 12px;}
+  .ftv-makers__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ftv-maker{
+    background:#fff;border:1px solid var(--ftv-line);border-radius:var(--ftv-radius);
+    padding:22px;display:flex;gap:16px;transition:.25s;
+  }
+  .ftv-maker:hover{border-color:#f2ccd4;box-shadow:var(--ftv-shadow);}
+  .ftv-maker__avatar{
+    width:56px;height:56px;border-radius:16px;flex:none;display:grid;place-items:center;
+    font-size:21px;font-weight:900;color:#fff;
+  }
+  .ftv-maker__name{font-size:16px;font-weight:800;display:flex;align-items:center;gap:7px;}
+  .ftv-maker__badge{font-size:10.5px;background:#fbeef1;color:var(--ftv-red);padding:1px 7px;border-radius:5px;font-weight:700;}
+  .ftv-maker__field{font-size:12.5px;color:var(--ftv-red);margin-top:2px;}
+  .ftv-maker__bio{font-size:13px;color:var(--ftv-ink-soft);margin-top:8px;line-height:1.6;}
+  .ftv-maker__nums{display:flex;gap:16px;margin-top:10px;font-size:12px;color:var(--ftv-ink-soft);}
+  .ftv-maker__nums b{color:var(--ftv-ink);}
+
+  /* 视频流 */
+  .ftv-stream{padding:52px 0 12px;}
+  .ftv-stream__tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px;}
+  .ftv-chip{
+    padding:7px 16px;border-radius:999px;border:1px solid var(--ftv-line);background:#fff;
+    font-size:13.5px;color:var(--ftv-ink-soft);transition:.2s;
+  }
+  .ftv-chip:hover,.ftv-chip.is-active{background:var(--ftv-red);border-color:var(--ftv-red);color:#fff;font-weight:600;}
+  .ftv-stream__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .ftv-stream__empty{display:none;padding:40px;text-align:center;color:var(--ftv-ink-soft);font-size:14px;background:#fff;border-radius:var(--ftv-radius);border:1px dashed var(--ftv-line);}
+  .ftv-stream__empty.is-show{display:block;}
+
+  /* 评论 */
+  .ftv-voices{padding:52px 0 12px;}
+  .ftv-voices__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ftv-voice{
+    background:#fff;border-radius:var(--ftv-radius);padding:20px;border:1px solid var(--ftv-line);
+    display:flex;flex-direction:column;gap:12px;position:relative;
+  }
+  .ftv-voice::before{
+    content:"“";position:absolute;top:6px;right:16px;font-size:46px;color:#f6dbe0;font-family:Georgia,serif;line-height:1;
+  }
+  .ftv-voice__text{font-size:13.5px;color:var(--ftv-ink-soft);line-height:1.72;position:relative;z-index:1;}
+  .ftv-voice__who{display:flex;align-items:center;gap:10px;margin-top:auto;}
+  .ftv-voice__ava{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12.5px;font-weight:700;flex:none;}
+  .ftv-voice__name{font-size:13px;font-weight:700;}
+  .ftv-voice__role{font-size:11.5px;color:var(--ftv-ink-soft);}
+
+  /* 动态与榜单双栏 */
+  .ftv-split{padding:52px 0 12px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px;}
+  .ftv-news{background:#fff;border:1px solid var(--ftv-line);border-radius:20px;padding:max(22px,3vw);}
+  .ftv-news__list{display:flex;flex-direction:column;gap:2px;}
+  .ftv-news__item{
+    display:grid;grid-template-columns:76px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--ftv-line);
+  }
+  .ftv-news__item:last-child{border-bottom:none;}
+  .ftv-news__date{font-size:12.5px;color:var(--ftv-red);font-weight:700;font-variant-numeric:tabular-nums;}
+  .ftv-news__title{font-size:14.5px;font-weight:700;}
+  .ftv-news__desc{font-size:12.8px;color:var(--ftv-ink-soft);margin-top:3px;}
+
+  .ftv-rank{background:var(--ftv-dark);border-radius:20px;padding:max(22px,3vw);color:#e9e9ee;}
+  .ftv-rank h2{font-size:20px;font-weight:800;color:#fff;margin-bottom:6px;}
+  .ftv-rank__sub{font-size:13px;color:#9b9ca6;margin-bottom:18px;}
+  .ftv-rank__item{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+  .ftv-rank__item:last-child{border-bottom:none;}
+  .ftv-rank__no{width:24px;font-size:15px;font-weight:900;color:#6d6e78;flex:none;text-align:center;}
+  .ftv-rank__item:nth-child(1) .ftv-rank__no{color:var(--ftv-gold);}
+  .ftv-rank__item:nth-child(2) .ftv-rank__no{color:#d7d9e2;}
+  .ftv-rank__item:nth-child(3) .ftv-rank__no{color:#c98363;}
+  .ftv-rank__name{font-size:14px;font-weight:600;color:#fff;}
+  .ftv-rank__tag{font-size:11.5px;color:#9b9ca6;margin-top:1px;}
+  .ftv-rank__heat{margin-left:auto;font-size:12px;color:var(--ftv-gold);font-variant-numeric:tabular-nums;flex:none;}
+
+  /* FAQ */
+  .ftv-faq{padding:52px 0 12px;}
+  .ftv-faq__grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .ftv-faq details{
+    background:#fff;border:1px solid var(--ftv-line);border-radius:12px;padding:0 18px;transition:.2s;
+  }
+  .ftv-faq details[open]{border-color:#f2ccd4;box-shadow:var(--ftv-shadow);}
+  .ftv-faq summary{
+    padding:16px 0;font-size:14.5px;font-weight:700;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .ftv-faq summary::-webkit-details-marker{display:none;}
+  .ftv-faq summary::after{content:"+";font-size:19px;color:var(--ftv-red);font-weight:400;flex:none;transition:.2s;}
+  .ftv-faq details[open] summary::after{transform:rotate(45deg);}
+  .ftv-faq__ans{font-size:13.5px;color:var(--ftv-ink-soft);padding:0 0 16px;line-height:1.72;}
+
+  /* 联系 / 投稿 */
+  .ftv-contact{padding:52px 0 60px;}
+  .ftv-contact__panel{
+    background:linear-gradient(135deg,#1f2026,#2b2c34);border-radius:22px;color:#ececf1;
+    padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1.2fr 1fr;gap:34px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .ftv-contact__panel::after{
+    content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle,rgba(200,50,75,.55),transparent 70%);
+  }
+  .ftv-contact h2{font-size:24px;font-weight:800;color:#fff;position:relative;z-index:1;}
+  .ftv-contact p{font-size:14px;color:#b6b7c0;margin-top:12px;position:relative;z-index:1;max-width:460px;}
+  .ftv-contact__actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;position:relative;z-index:1;}
+  .ftv-contact__meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:1;font-size:13px;color:#9b9ca6;}
+  .ftv-contact__meta b{color:#fff;display:block;font-size:14px;}
+
+  /* 页脚 */
+  .ftv-footer{background:var(--ftv-dark);color:#9b9ca6;font-size:13px;padding:42px 0 26px;}
+  .ftv-footer__inner{max-width:1220px;margin:0 auto;padding:0 24px;}
+  .ftv-footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.09);}
+  .ftv-footer__brand{color:#fff;font-size:17px;font-weight:800;margin-bottom:10px;}
+  .ftv-footer__brand em{font-style:normal;color:var(--ftv-red);}
+  .ftv-footer__desc{line-height:1.75;max-width:330px;}
+  .ftv-footer h4{color:#e6e6ec;font-size:13.5px;margin-bottom:12px;font-weight:700;}
+  .ftv-footer li{margin-bottom:8px;}
+  .ftv-footer a:hover{color:var(--ftv-red);}
+  .ftv-footer__bottom{padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;}
+
+  /* 回到顶部 */
+  .ftv-backtop{
+    position:fixed;right:22px;bottom:26px;width:46px;height:46px;border-radius:50%;
+    background:var(--ftv-red);color:#fff;display:grid;place-items:center;
+    box-shadow:0 8px 22px rgba(200,50,75,.4);opacity:0;pointer-events:none;transition:.25s;z-index:80;
+  }
+  .ftv-backtop.is-show{opacity:1;pointer-events:auto;}
+  .ftv-backtop:hover{background:var(--ftv-red-deep);transform:translateY(-2px);}
+
+  /* Toast */
+  .ftv-toast{
+    position:fixed;left:50%;top:78px;transform:translate(-50%,-16px);
+    background:rgba(27,28,33,.95);color:#fff;padding:11px 22px;border-radius:999px;
+    font-size:13.5px;opacity:0;pointer-events:none;transition:.28s;z-index:120;white-space:nowrap;
+    box-shadow:0 10px 30px rgba(0,0,0,.28);
+  }
+  .ftv-toast.is-show{opacity:1;transform:translate(-50%,0);}
+
+  /* 弹窗 */
+  .ftv-modal{
+    position:fixed;inset:0;background:rgba(18,19,23,.62);backdrop-filter:blur(3px);
+    display:none;place-items:center;padding:24px;z-index:110;
+  }
+  .ftv-modal.is-open{display:grid;}
+  .ftv-modal__box{
+    background:#fff;border-radius:18px;max-width:480px;width:100%;padding:30px;
+    position:relative;animation:ftvPop .22s ease-out;
+  }
+  @keyframes ftvPop{from{transform:scale(.96);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .ftv-modal__close{position:absolute;top:12px;right:14px;font-size:22px;color:#9b9ca6;line-height:1;}
+  .ftv-modal__box h3{font-size:19px;font-weight:800;margin-bottom:6px;}
+  .ftv-modal__box p{font-size:13.5px;color:var(--ftv-ink-soft);}
+  .ftv-modal__field{margin-top:16px;}
+  .ftv-modal__field label{font-size:13px;font-weight:700;display:block;margin-bottom:6px;}
+  .ftv-modal__field input,.ftv-modal__field textarea{
+    width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--ftv-line);
+    font-size:13.5px;font-family:inherit;outline:none;transition:.2s;resize:vertical;
+  }
+  .ftv-modal__field input:focus,.ftv-modal__field textarea:focus{border-color:var(--ftv-red);box-shadow:0 0 0 3px #f7dfe4;}
+  .ftv-modal__submit{margin-top:18px;width:100%;}
+
+  @media (max-width:980px){
+    .ftv-hero__grid{grid-template-columns:1fr;}
+    .ftv-focus__grid{grid-template-columns:1fr;}
+    .ftv-topics__grid{grid-template-columns:1fr 1fr;}
+    .ftv-makers__grid{grid-template-columns:1fr 1fr;}
+    .ftv-stream__grid{grid-template-columns:1fr 1fr;}
+    .ftv-voices__grid{grid-template-columns:1fr 1fr;}
+    .ftv-split{grid-template-columns:1fr;}
+    .ftv-faq__grid{grid-template-columns:1fr;}
+    .ftv-contact__panel{grid-template-columns:1fr;}
+    .ftv-contact__actions{justify-content:flex-start;}
+    .ftv-footer__top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:760px){
+    .ftv-header__inner{flex-wrap:wrap;gap:12px;padding:12px 18px;}
+    .ftv-burger{display:flex;margin-left:auto;order:2;}
+    .ftv-search{order:4;width:100%;}
+    .ftv-nav{
+      order:3;width:100%;flex-direction:column;display:none;gap:2px;padding-top:6px;
+    }
+    .ftv-nav.is-open{display:flex;}
+    .ftv-hero{padding:34px 0 12px;}
+    .ftv-focus__side{grid-template-columns:1fr;}
+    .ftv-topics__grid,.ftv-makers__grid,.ftv-stream__grid,.ftv-voices__grid{grid-template-columns:1fr;}
+    .ftv-footer__top{grid-template-columns:1fr;}
+    .ftv-contact__actions{justify-content:stretch;}
+    .ftv-contact__actions .ftv-btn{flex:1;}
+    .ftv-announce{font-size:12px;padding:8px 14px;}
+    section{scroll-margin-top:150px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s !important;transition-duration:.001s !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 吸顶容器 -->
+<div class="ftv-sticky-shell">
+  <div class="ftv-announce" role="region" aria-label="站内更新公告">
+    <span class="ftv-announce__tag">更新</span>
+    <div class="ftv-announce__marquee">
+      <div class="ftv-announce__track">
+        <span><b>11/19</b> 新增「霜降之后」城市短片企划 第4集《旧书店的下午三点》已上线</span>
+        <span><b>11/17</b> 2026冬季创作挑战赛开启报名，主题「我的一天」</span>
+        <span><b>11/15</b> 创作者扶持计划第二期开放投稿，扶持名额 60 位</span>
+        <span><b>11/12</b> 影像开放日·上海站报名通道已开启，限额 120 人</span>
+        <span><b>11/19</b> 新增「霜降之后」城市短片企划 第4集《旧书店的下午三点》已上线</span>
+        <span><b>11/17</b> 2026冬季创作挑战赛开启报名，主题「我的一天」</span>
+        <span><b>11/15</b> 创作者扶持计划第二期开放投稿，扶持名额 60 位</span>
+        <span><b>11/12</b> 影像开放日·上海站报名通道已开启，限额 120 人</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="ftv-header">
+    <div class="ftv-header__inner">
+      <a href="#ftv-top" class="ftv-brand" aria-label="腐剧tv入口品牌首页">
+        <span class="ftv-brand__mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7V5z" fill="#fff"/></svg>
+        </span>
+        <span>
+          <span class="ftv-brand__name">腐剧<em>tv</em>入口</span>
+          <span class="ftv-brand__sub">官方视频门户</span>
+        </span>
+      </a>
+
+      <button class="ftv-burger" id="ftvBurger" aria-label="展开导航菜单" aria-expanded="false" aria-controls="ftvNav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="ftv-nav" id="ftvNav" aria-label="主导航">
+        <a class="ftv-nav__link is-active" href="#ftv-top">首页</a>
+        <a class="ftv-nav__link" href="#ftv-focus">焦点内容</a>
+        <a class="ftv-nav__link" href="#ftv-topics">专题企划</a>
+        <a class="ftv-nav__link" href="#ftv-makers">创作者</a>
+        <a class="ftv-nav__link" href="#ftv-stream">热门影像</a>
+        <a class="ftv-nav__link" href="#ftv-news">企业动态</a>
+        <a class="ftv-nav__link" href="#ftv-faq">帮助</a>
+        <a class="ftv-nav__link" href="#ftv-contact">联系</a>
+      </nav>
+
+      <div class="ftv-search">
+        <input class="ftv-search__input" id="ftvSearchInput" type="search" placeholder="搜索剧集、创作者、专题…" aria-label="站内搜索">
+        <button class="ftv-search__btn" id="ftvSearchBtn" aria-label="执行搜索">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        </button>
+        <ul class="ftv-search__hint" id="ftvSearchHint" aria-live="polite"></ul>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="ftv-top">
+
+  <!-- 首屏 -->
+  <section class="ftv-hero" aria-labelledby="ftvHeroTitle">
+    <div class="ftv-hero__grid">
+      <div>
+        <span class="ftv-hero__badge"><i></i>官方网站 · 品牌自营内容生态</span>
+        <h1 class="ftv-hero__title" id="ftvHeroTitle">腐剧<em style="font-style:normal;color:var(--ftv-red);">tv</em><span>入口</span></h1>
+        <p class="ftv-hero__lead">
+          腐剧tv入口是专注于原创剧情影像的企业级视频内容平台。我们以「品牌即内容」为长期主张，
+          为创作者提供稳定的发布通道与清晰的成长路径，为观众提供高清正版的连续剧集与多元短片，
+          并以专业社区承接每一次真诚的讨论。
+        </p>
+        <div class="ftv-hero__actions">
+          <a class="ftv-btn ftv-btn--primary" href="#ftv-stream">浏览精品内容
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button class="ftv-btn ftv-btn--ghost" data-ftv-open="submit">创作者投稿入口</button>
+          <button class="ftv-btn ftv-btn--ghost" id="ftvShareBtn">复制本站链接</button>
+        </div>
+        <div class="ftv-hero__stats">
+          <div class="ftv-stat">
+            <div class="ftv-stat__num" data-ftv-count="4280">0</div>
+            <div class="ftv-stat__label">原创剧集与短片</div>
+          </div>
+          <div class="ftv-stat">
+            <div class="ftv-stat__num" data-ftv-count="1260">0</div>
+            <div class="ftv-stat__label">入驻创作者</div>
+          </div>
+          <div class="ftv-stat">
+            <div class="ftv-stat__num" data-ftv-count="286">0</div>
+            <div class="ftv-stat__label">万月度观看人次</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ftv-hero__visual">
+        <div class="ftv-hero__cover">
+          <svg viewBox="0 0 640 480" role="img" aria-label="腐剧tv入口品牌主视觉：夜色城市与剧集画面">
+            <defs>
+              <linearGradient id="ftvHeroSky" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2a1b2e"/>
+                <stop offset="0.55" stop-color="#4c2233"/>
+                <stop offset="1" stop-color="#c8324b"/>
+              </linearGradient>
+              <linearGradient id="ftvHeroGlass" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="480" fill="url(#ftvHeroSky)"/>
+            <circle cx="492" cy="118" r="62" fill="#f6d4a8" opacity="0.55"/>
+            <g fill="#20141f" opacity="0.85">
+              <rect x="40" y="250" width="72" height="230"/>
+              <rect x="126" y="200" width="58" height="280"/>
+              <rect x="198" y="284" width="86" height="196"/>
+              <rect x="300" y="164" width="64" height="316"/>
+              <rect x="378" y="238" width="92" height="242"/>
+              <rect x="484" y="212" width="66" height="268"/>
+              <rect x="562" y="276" width="60" height="204"/>
+            </g>
+            <g fill="#ffcf8f" opacity="0.7">
+              <rect x="54" y="268" width="9" height="14"/><rect x="74" y="268" width="9" height="14"/>
+              <rect x="54" y="298" width="9" height="14"/><rect x="74" y="298" width="9" height="14"/>
+              <rect x="138" y="222" width="9" height="14"/><rect x="158" y="222" width="9" height="14"/>
+              <rect x="138" y="252" width="9" height="14"/>
+              <rect x="312" y="188" width="9" height="14"/><rect x="334" y="188" width="9" height="14"/>
+              <rect x="312" y="218" width="9" height="14"/><rect x="334" y="248" width="9" height="14"/>
+              <rect x="392" y="260" width="9" height="14"/><rect x="414" y="260" width="9" height="14"/>
+              <rect x="392" y="292" width="9" height="14"/>
+              <rect x="498" y="236" width="9" height="14"/><rect x="518" y="236" width="9" height="14"/>
+            </g>
+            <rect x="0" y="392" width="640" height="88" fill="#150d14" opacity="0.9"/>
+            <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="2">
+              <path d="M46 430h548" stroke-dasharray="10 14"/>
+            </g>
+            <rect x="252" y="330" width="136" height="52" rx="12" fill="url(#ftvHeroGlass)" stroke="#ffffff" stroke-opacity="0.3"/>
+            <path d="M310 344l18 12-18 12z" fill="#fff"/>
+            <text x="338" y="364" fill="#fff" font-size="12" font-family="sans-serif" opacity="0.9">EP.04</text>
+          </svg>
+          <div class="ftv-hero__play">
+            <button aria-label="播放腐剧tv入口品牌宣传短片">
+              <svg viewBox="0 0 24 24" fill="#c8324b"><path d="M8 5l12 7-12 7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="ftv-hero__float">
+          <b>直播中</b> 影像开放日 · 创作者对谈
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌深度解析 -->
+  <section class="ftv-about" id="ftv-about" aria-labelledby="ftvAboutTitle">
+    <div class="ftv-about__panel">
+      <div class="ftv-section-head" style="margin-bottom:18px;">
+        <div class="ftv-section-head__kicker">Brand Insight / 品牌解析</div>
+        <h2 id="ftvAboutTitle">理解腐剧<em>tv</em>入口：一个持续运营的原创影像品牌</h2>
+      </div>
+      <div class="ftv-about__body">
+        <p>
+          <strong>腐剧tv入口</strong>并不是一个临时的内容集合，而是一个由企业长期投入、以品牌为单位的原创影像社区。
+          从第一天起，我们就把「入口」这个词看得比较重：它意味着一扇门，观众从这里进入故事，
+          创作者从这里进入行业，合作方从这里进入一个稳定、可预期、有品质标准的内容生态。
+          官方网站承载的正是这种门的意义——它是品牌信息的原点，也是所有内容的分发枢纽。
+        </p>
+        <p>
+          从内容结构上说，腐剧tv入口长期深耕剧情向短视频与连续短剧两个垂直领域。短剧讲究节奏与钩子，
+          要求在前十五秒完成情绪建立；剧情短片讲究人物与留白，需要在有限时长里完成一次完整的情感弧线。
+          这两类内容看似不同，实则共享同一套方法论：先有人物，再有情境，最后才是情节。
+          我们把这套方法论写进了创作者手册，也写进了平台的内容评审标准。
+        </p>
+        <h3>一、品牌定位：做剧情影像的稳定供给方</h3>
+        <p>
+          在信息过载的环境里，观众最稀缺的不是内容，而是「值得点开」的信任感。
+          腐剧tv入口的企业定位因此非常明确：不做无限扩张的内容货架，而是做剧情影像的稳定供给方。
+          每一部进入首页推荐位的作品，都要经过选题评估、成片审看、字幕校对与画面规范四道流程；
+          每一位进入创作者矩阵的作者，都要有可追溯的更新记录与清晰的创作方向。
+          这种看起来偏慢的做法，换来的是口碑的持续积累与用户首选的复访习惯。
+        </p>
+        <h3>二、内容生态：创作者、观众与品牌的三方循环</h3>
+        <p>
+          一个健康的社区需要三方同时获益。创作者获得曝光、成长通道与合理的收益分配；
+          观众获得高清、正版、稳定的观看体验与有质量的讨论空间；品牌方获得与内容调性匹配的合作位置。
+          腐剧tv入口把这三件事拆成可执行的机制：创作者扶持计划提供前期制作支持与流量倾斜，
+          观众侧以标签筛选、专题聚合与评论治理提升使用体验，品牌合作则坚持「内容先行、植入在后」的原则，
+          拒绝破坏叙事节奏的硬性插入。这三条线彼此咬合，构成了平台的内容生态闭环。
+        </p>
+        <h3>三、品质标准：从画面到字幕的细节</h3>
+        <p>
+          我们相信品质是可以被描述的。腐剧tv入口对成片有一套公开的技术建议：画面比例统一、调色避免过度饱和、
+          环境音与对白音量差控制在合理区间、字幕字号与停留时长需匹配阅读速度。
+          这些看似琐碎的规范，恰恰决定了观众在连续观看时的疲劳程度。
+          专业不只体现在设备上，更体现在对观看者时间的尊重上。也正因如此，
+          平台上的精品内容往往能在上线后获得较长的自然传播周期，而不是三天热度。
+        </p>
+        <h3>四、社区气质：包容、真实、有力量</h3>
+        <p>
+          剧情内容的评论区很容易滑向情绪对立。腐剧tv入口在社区治理上选择了一条更费力的路：
+          鼓励具体讨论，弱化人身评价；鼓励补充信息，弱化立场站队。
+          我们上线了「剧情细节补充」标签，让愿意认真看的观众有一个被看见的位置。
+          成长与陪伴是社区的两个关键词——成长指向创作者，陪伴指向观众。
+          当一部剧更新到第八集，评论区里那些从第一集追到现在的留言，就是平台最真实的社会责任体现。
+        </p>
+        <h3>五、企业动态与长期主义</h3>
+        <p>
+          作为一家持续运营的内容企业，腐剧tv入口每年会公开两次内容规划与一次年度回顾，
+          把选题方向、扶持名额、合作方式写清楚，让创作者可以提前安排创作节奏。
+          官方发布的信息统一在本站企业动态板块更新，不做模糊表述。
+          长期主义听起来抽象，落到执行上无非是：说到的事情做到，做不到的事情提前说清楚。
+          这也是我们理解「值得信赖」四个字的全部含义。
+        </p>
+        <h3>六、面向未来：让入口更清晰</h3>
+        <p>
+          未来一年，腐剧tv入口会把更多资源投入到两个方向：一是新人创作者的第一部作品，
+          二是剧情内容的多形态尝试，包括竖屏短剧、横屏短片与纪录式剧情。
+          我们希望在保持品牌调性的前提下，让内容形态更加多元与包容。
+          入口的价值不在于它有多大，而在于它是否足够清晰——让人一眼知道这里有什么，
+          点进来之后不会失望。这是官方网站存在的意义，也是品牌继续走下去的理由。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 焦点内容 -->
+  <section class="ftv-focus" id="ftv-focus" aria-labelledby="ftvFocusTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Featured / 焦点内容</div>
+      <h2 class="ftv-section-head__title" id="ftvFocusTitle">本季焦点：四部值得从头看到尾的剧情影像</h2>
+      <p class="ftv-section-head__desc">由品牌内容团队与创作者共同遴选，覆盖城市生活、人物关系、纪录式剧情与实验短片四种方向。</p>
+    </div>
+    <div class="ftv-focus__grid">
+      <article class="ftv-vcard ftv-vcard--big">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="焦点内容《旧书店的下午三点》封面：暖色书架与窗光">
+            <defs><linearGradient id="ftvC1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a4a2b"/><stop offset="1" stop-color="#d98f4e"/></linearGradient></defs>
+            <rect width="640" height="360" fill="url(#ftvC1)"/>
+            <g fill="#4a2a17" opacity="0.55">
+              <rect x="60" y="60" width="150" height="240"/><rect x="230" y="60" width="170" height="240"/><rect x="420" y="60" width="160" height="240"/>
+            </g>
+            <g fill="#f7dcb4" opacity="0.85">
+              <rect x="76" y="80" width="14" height="60"/><rect x="98" y="80" width="14" height="60"/><rect x="120" y="80" width="14" height="60"/><rect x="142" y="80" width="14" height="60"/>
+              <rect x="76" y="160" width="14" height="60"/><rect x="98" y="160" width="14" height="60"/><rect x="120" y="160" width="14" height="60"/>
+              <rect x="246" y="80" width="14" height="60"/><rect x="268" y="80" width="14" height="60"/><rect x="290" y="80" width="14" height="60"/>
+              <rect x="246" y="160" width="14" height="60"/><rect x="90" y="80" width="0" height="0"/>
+              <rect x="436" y="80" width="14" height="60"/><rect x="458" y="80" width="14" height="60"/><rect x="436" y="160" width="14" height="60"/>
+            </g>
+            <path d="M290 0L520 0L400 360L210 360z" fill="#fff2d6" opacity="0.16"/>
+            <rect x="0" y="300" width="640" height="60" fill="#2b170c" opacity="0.7"/>
+          </svg>
+          <span class="ftv-vcard__tag">更新至 EP.04</span>
+          <span class="ftv-vcard__time">18:42</span>
+          <span class="ftv-vcard__triangle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="rgba(255,255,255,.9)"><path d="M8 5l12 7-12 7z"/></svg>
+          </span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">旧书店的下午三点：两个人用一盏台灯谈了一整个秋天</h3>
+          <p class="ftv-vcard__desc">城市短片企划「霜降之后」第四集。旧书店即将关门，店主与常客在每天的三点到五点之间，把没说完的话慢慢讲完。全片以自然光拍摄，收声保留了翻书与街面的人声。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#a12238;">林</span>
+            <span>林见微</span>
+            <span>·</span>
+            <span>播放 42.6 万</span>
+            <div class="ftv-vcard__acts">
+              <button class="ftv-vcard__act" data-ftv-like aria-label="为《旧书店的下午三点》点赞">赞 3.2万</button>
+              <button class="ftv-vcard__act" data-ftv-fav aria-label="收藏《旧书店的下午三点》">收藏</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="ftv-focus__side">
+        <article class="ftv-vcard">
+          <div class="ftv-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="焦点内容《末班地铁的第七节》封面：蓝紫夜色车厢">
+              <defs><linearGradient id="ftvC2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f2a55"/><stop offset="1" stop-color="#6b4d9c"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ftvC2)"/>
+              <rect x="40" y="150" width="560" height="150" rx="18" fill="#2f3a6b"/>
+              <g fill="#c7d0ff" opacity="0.8">
+                <rect x="80" y="180" width="70" height="80" rx="6"/><rect x="180" y="180" width="70" height="80" rx="6"/>
+                <rect x="280" y="180" width="70" height="80" rx="6"/><rect x="380" y="180" width="70" height="80" rx="6"/>
+              </g>
+              <circle cx="130" cy="130" r="26" fill="#e8e3ff" opacity="0.55"/>
+              <path d="M0 300h640v60H0z" fill="#141a33"/>
+            </svg>
+            <span class="ftv-vcard__tag">完结</span>
+            <span class="ftv-vcard__time">12:05</span>
+          </div>
+          <div class="ftv-vcard__body">
+            <h3 class="ftv-vcard__title">末班地铁的第七节</h3>
+            <p class="ftv-vcard__desc">关于两个陌生人在末班车上交换了一整年心事的实验短片。</p>
+            <div class="ftv-vcard__meta">
+              <span class="ftv-vcard__avatar" style="background:#5a4f9e;">周</span>
+              <span>周与野</span>
+              <div class="ftv-vcard__acts">
+                <button class="ftv-vcard__act" data-ftv-like aria-label="为《末班地铁的第七节》点赞">赞 1.8万</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ftv-vcard">
+          <div class="ftv-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="焦点内容《厨房里的两个人》封面：暖黄餐桌与蒸汽">
+              <defs><linearGradient id="ftvC3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0d9a8"/><stop offset="1" stop-color="#c98f3f"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ftvC3)"/>
+              <rect x="0" y="250" width="640" height="110" fill="#8a5a25"/>
+              <ellipse cx="320" cy="252" rx="180" ry="24" fill="#f7ecd4"/>
+              <circle cx="262" cy="224" r="30" fill="#e0a350"/><circle cx="378" cy="224" r="30" fill="#e0a350"/>
+              <g stroke="#fff" stroke-opacity="0.55" stroke-width="6" fill="none" stroke-linecap="round">
+                <path d="M300 190c-14-20 14-32 0-52"/><path d="M340 190c-14-20 14-32 0-52"/>
+              </g>
+              <circle cx="500" cy="90" r="46" fill="#fff3d6" opacity="0.6"/>
+            </svg>
+            <span class="ftv-vcard__tag">更新中</span>
+            <span class="ftv-vcard__time">09:36</span>
+          </div>
+          <div class="ftv-vcard__body">
+            <h3 class="ftv-vcard__title">厨房里的两个人</h3>
+            <p class="ftv-vcard__desc">一对合租朋友用三十道家常菜，记录了一整年的关系变化。</p>
+            <div class="ftv-vcard__meta">
+              <span class="ftv-vcard__avatar" style="background:#b8752a;">苏</span>
+              <span>苏禾</span>
+              <div class="ftv-vcard__acts">
+                <button class="ftv-vcard__act" data-ftv-like aria-label="为《厨房里的两个人》点赞">赞 2.4万</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ftv-vcard">
+          <div class="ftv-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="焦点内容《她住在顶楼》封面：灰蓝楼梯与天窗">
+              <defs><linearGradient id="ftvC4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa6b8"/><stop offset="1" stop-color="#495468"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ftvC4)"/>
+              <g stroke="#e8edf5" stroke-opacity="0.4" stroke-width="4" fill="none">
+                <path d="M60 340L260 60M120 340L320 60M180 340L380 60M240 340L440 60"/>
+                <path d="M40 300h560M40 240h560M40 180h560M40 120h560"/>
+              </g>
+              <rect x="380" y="40" width="200" height="120" fill="#e7eef8" opacity="0.5"/>
+            </svg>
+            <span class="ftv-vcard__tag">新上线</span>
+            <span class="ftv-vcard__time">22:18</span>
+          </div>
+          <div class="ftv-vcard__body">
+            <h3 class="ftv-vcard__title">她住在顶楼</h3>
+            <p class="ftv-vcard__desc">独居第八年，她把天台改造成了自己的放映室。</p>
+            <div class="ftv-vcard__meta">
+              <span class="ftv-vcard__avatar" style="background:#4c5a72;">沈</span>
+              <span>沈知白</span>
+              <div class="ftv-vcard__acts">
+                <button class="ftv-vcard__act" data-ftv-like aria-label="为《她住在顶楼》点赞">赞 9600</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ftv-vcard">
+          <div class="ftv-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="焦点内容《录音棚最后一夜》封面：暗红灯光与麦克风">
+              <defs><linearGradient id="ftvC5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a1b26"/><stop offset="1" stop-color="#8c2f45"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ftvC5)"/>
+              <rect x="290" y="60" width="18" height="160" rx="9" fill="#d9d9e2"/>
+              <rect x="276" y="210" width="46" height="18" rx="9" fill="#b9b9c6"/>
+              <circle cx="299" cy="96" r="34" fill="#4a4a58"/>
+              <circle cx="299" cy="96" r="34" fill="none" stroke="#d9d9e2" stroke-width="3"/>
+              <g fill="#ffbfd0" opacity="0.5"><circle cx="120" cy="90" r="46"/><circle cx="520" cy="250" r="60"/></g>
+            </svg>
+            <span class="ftv-vcard__tag">纪录式剧情</span>
+            <span class="ftv-vcard__time">35:50</span>
+          </div>
+          <div class="ftv-vcard__body">
+            <h3 class="ftv-vcard__title">录音棚最后一夜</h3>
+            <p class="ftv-vcard__desc">乐队解散前，他们决定把最后一张专辑一次性录完。</p>
+            <div class="ftv-vcard__meta">
+              <span class="ftv-vcard__avatar" style="background:#8c2f45;">陆</span>
+              <span>陆声</span>
+              <div class="ftv-vcard__acts">
+                <button class="ftv-vcard__act" data-ftv-like aria-label="为《录音棚最后一夜》点赞">赞 1.1万</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 专题企划 -->
+  <section class="ftv-topics" id="ftv-topics" aria-labelledby="ftvTopicsTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Series / 专题企划</div>
+      <h2 class="ftv-section-head__title" id="ftvTopicsTitle">正在进行的四个专题企划</h2>
+      <p class="ftv-section-head__desc">专题由品牌编辑团队策划，联合多位创作者同步更新，按周推进。</p>
+    </div>
+    <div class="ftv-topics__grid">
+      <article class="ftv-topic">
+        <div class="ftv-topic__bg" aria-hidden="true">
+          <svg viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ftvT1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b3a4e"/><stop offset="1" stop-color="#3d1e2b"/></linearGradient></defs><rect width="320" height="420" fill="url(#ftvT1)"/><g fill="#f5c9b6" opacity="0.35"><circle cx="90" cy="120" r="52"/><circle cx="230" cy="230" r="40"/><circle cx="140" cy="330" r="28"/></g><path d="M0 300L320 200v220H0z" fill="#241220" opacity="0.7"/></svg>
+        </div>
+        <div class="ftv-topic__inner">
+          <span class="ftv-topic__state">更新至 4/6</span>
+          <div class="ftv-topic__name">霜降之后</div>
+          <p class="ftv-topic__desc">六座城市的秋末影像笔记，记录书店、地铁、天台与录音棚。</p>
+        </div>
+      </article>
+      <article class="ftv-topic">
+        <div class="ftv-topic__bg" aria-hidden="true">
+          <svg viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ftvT2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e5c6e"/><stop offset="1" stop-color="#1a3542"/></linearGradient></defs><rect width="320" height="420" fill="url(#ftvT2)"/><g stroke="#a9dbef" stroke-opacity="0.4" stroke-width="3" fill="none"><path d="M20 340c60-120 160-120 280-30"/><path d="M20 380c60-120 160-120 280-30"/></g><circle cx="240" cy="100" r="30" fill="#bfe6f5" opacity="0.4"/></svg>
+        </div>
+        <div class="ftv-topic__inner">
+          <span class="ftv-topic__state">招募中</span>
+          <div class="ftv-topic__name">我的一天</div>
+          <p class="ftv-topic__desc">2026 冬季创作挑战赛主题，面向全体创作者开放报名。</p>
+        </div>
+      </article>
+      <article class="ftv-topic">
+        <div class="ftv-topic__bg" aria-hidden="true">
+          <svg viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ftvT3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c39a4a"/><stop offset="1" stop-color="#6b4c1c"/></linearGradient></defs><rect width="320" height="420" fill="url(#ftvT3)"/><g fill="#fbe9c2" opacity="0.4"><rect x="40" y="90" width="60" height="240" rx="8"/><rect x="130" y="150" width="60" height="180" rx="8"/><rect x="220" y="60" width="60" height="270" rx="8"/></g></svg>
+        </div>
+        <div class="ftv-topic__inner">
+          <span class="ftv-topic__state">更新至 7/10</span>
+          <div class="ftv-topic__name">配角出列</div>
+          <p class="ftv-topic__desc">把镜头交给那些在主线里一闪而过的人，十集十种人生。</p>
+        </div>
+      </article>
+      <article class="ftv-topic">
+        <div class="ftv-topic__bg" aria-hidden="true">
+          <svg viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ftvT4" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4d4f8a"/><stop offset="1" stop-color="#232447"/></linearGradient></defs><rect width="320" height="420" fill="url(#ftvT4)"/><g fill="#cfd2ff" opacity="0.35"><rect x="50" y="130" width="220" height="8" rx="4"/><rect x="50" y="180" width="180" height="8" rx="4"/><rect x="50" y="230" width="200" height="8" rx="4"/><rect x="50" y="280" width="140" height="8" rx="4"/></g><circle cx="230" cy="80" r="34" fill="#c7c9ff" opacity="0.3"/></svg>
+        </div>
+        <div class="ftv-topic__inner">
+          <span class="ftv-topic__state">已完结</span>
+          <div class="ftv-topic__name">剧本的第一稿</div>
+          <p class="ftv-topic__desc">跟踪五位编剧从大纲到定稿的全过程，含未采用的段落。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 创作者 -->
+  <section class="ftv-makers" id="ftv-makers" aria-labelledby="ftvMakersTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Creators / 创作者矩阵</div>
+      <h2 class="ftv-section-head__title" id="ftvMakersTitle">平台签约与入驻的创作者</h2>
+      <p class="ftv-section-head__desc">以下创作者均通过品牌内容审核，拥有稳定的更新记录与清晰的创作方向。</p>
+    </div>
+    <div class="ftv-makers__grid" id="ftvMakersGrid">
+      <article class="ftv-maker" data-ftv-maker data-name="林见微" data-field="城市剧情短片" data-works="38" data-fans="26.4万" data-bio="擅长自然光拍摄与日常对白，代表作《旧书店的下午三点》。坚持实景收音，拒绝过度调色。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#c8324b,#7d1c2d);">林</div>
+        <div>
+          <div class="ftv-maker__name">林见微 <span class="ftv-maker__badge">签约</span></div>
+          <div class="ftv-maker__field">城市剧情短片</div>
+          <p class="ftv-maker__bio">擅长自然光拍摄与日常对白，代表作《旧书店的下午三点》。坚持实景收音，拒绝过度调色。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>38</b></span><span>关注 <b>26.4万</b></span></div>
+        </div>
+      </article>
+      <article class="ftv-maker" data-ftv-maker data-name="周与野" data-field="实验短片 / 装置影像" data-works="21" data-fans="14.2万" data-bio="偏爱夜间与公共交通场景，作品常以长镜头完成情绪堆叠。《末班地铁的第七节》为其代表作。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#5a4f9e,#2c2757);">周</div>
+        <div>
+          <div class="ftv-maker__name">周与野 <span class="ftv-maker__badge">签约</span></div>
+          <div class="ftv-maker__field">实验短片 / 装置影像</div>
+          <p class="ftv-maker__bio">偏爱夜间与公共交通场景，作品常以长镜头完成情绪堆叠。《末班地铁的第七节》为其代表作。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>21</b></span><span>关注 <b>14.2万</b></span></div>
+        </div>
+      </article>
+      <article class="ftv-maker" data-ftv-maker data-name="苏禾" data-field="美食剧情 / 生活记录" data-works="64" data-fans="41.8万" data-bio="以厨房为叙事现场，把家常菜拍成关系史。更新稳定，节奏温和，被观众称为「下饭剧情」。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#c98f3f,#8a5a25);">苏</div>
+        <div>
+          <div class="ftv-maker__name">苏禾 <span class="ftv-maker__badge">人气</span></div>
+          <div class="ftv-maker__field">美食剧情 / 生活记录</div>
+          <p class="ftv-maker__bio">以厨房为叙事现场，把家常菜拍成关系史。更新稳定，节奏温和，被观众称为「下饭剧情」。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>64</b></span><span>关注 <b>41.8万</b></span></div>
+        </div>
+      </article>
+      <article class="ftv-maker" data-ftv-maker data-name="沈知白" data-field="独居叙事 / 空间影像" data-works="17" data-fans="9.6万" data-bio="关注独居者的房间与动线，作品多在同一空间内完成时间跨度拍摄。擅长用光讲故事。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#4c5a72,#26303f);">沈</div>
+        <div>
+          <div class="ftv-maker__name">沈知白 <span class="ftv-maker__badge">新锐</span></div>
+          <div class="ftv-maker__field">独居叙事 / 空间影像</div>
+          <p class="ftv-maker__bio">关注独居者的房间与动线，作品多在同一空间内完成时间跨度拍摄。擅长用光讲故事。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>17</b></span><span>关注 <b>9.6万</b></span></div>
+        </div>
+      </article>
+      <article class="ftv-maker" data-ftv-maker data-name="陆声" data-field="音乐纪录 / 现场影像" data-works="29" data-fans="18.9万" data-bio="长期跟拍独立乐队，强调现场感与声音细节。《录音棚最后一夜》为其年度作品。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#8c2f45,#4a1523);">陆</div>
+        <div>
+          <div class="ftv-maker__name">陆声 <span class="ftv-maker__badge">签约</span></div>
+          <div class="ftv-maker__field">音乐纪录 / 现场影像</div>
+          <p class="ftv-maker__bio">长期跟拍独立乐队，强调现场感与声音细节。《录音棚最后一夜》为其年度作品。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>29</b></span><span>关注 <b>18.9万</b></span></div>
+        </div>
+      </article>
+      <article class="ftv-maker" data-ftv-maker data-name="许未" data-field="青少年成长剧情" data-works="12" data-fans="7.3万" data-bio="以校园与家庭为背景，关注成长中的沉默时刻。作品台词克制，镜头干净，适合安静看。">
+        <div class="ftv-maker__avatar" style="background:linear-gradient(135deg,#4b8a76,#245243);">许</div>
+        <div>
+          <div class="ftv-maker__name">许未 <span class="ftv-maker__badge">新锐</span></div>
+          <div class="ftv-maker__field">青少年成长剧情</div>
+          <p class="ftv-maker__bio">以校园与家庭为背景，关注成长中的沉默时刻。作品台词克制，镜头干净，适合安静看。</p>
+          <div class="ftv-maker__nums"><span>作品 <b>12</b></span><span>关注 <b>7.3万</b></span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 热门视频流 -->
+  <section class="ftv-stream" id="ftv-stream" aria-labelledby="ftvStreamTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Stream / 热门影像</div>
+      <h2 class="ftv-section-head__title" id="ftvStreamTitle">近期高热度的剧情影像</h2>
+      <p class="ftv-section-head__desc">按内容方向筛选，点击卡片上的标签可快速查找同类作品。</p>
+    </div>
+    <div class="ftv-stream__tabs" role="tablist" aria-label="内容方向筛选">
+      <button class="ftv-chip is-active" data-ftv-filter="all" role="tab" aria-selected="true">全部</button>
+      <button class="ftv-chip" data-ftv-filter="城市" role="tab" aria-selected="false">城市剧情</button>
+      <button class="ftv-chip" data-ftv-filter="关系" role="tab" aria-selected="false">人物关系</button>
+      <button class="ftv-chip" data-ftv-filter="纪录" role="tab" aria-selected="false">纪录式剧情</button>
+      <button class="ftv-chip" data-ftv-filter="实验" role="tab" aria-selected="false">实验短片</button>
+    </div>
+    <div class="ftv-stream__grid" id="ftvStreamGrid">
+      <article class="ftv-vcard" data-ftv-cat="城市">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《便利店的三点零七分》封面：深夜便利店灯光"><defs><linearGradient id="ftvS1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2a3d"/><stop offset="1" stop-color="#3f6a8a"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS1)"/><rect x="180" y="110" width="280" height="200" rx="10" fill="#e8f2ff" opacity="0.18"/><g fill="#ffe9a8" opacity="0.75"><rect x="210" y="150" width="220" height="10" rx="5"/><rect x="210" y="186" width="180" height="10" rx="5"/><rect x="210" y="222" width="200" height="10" rx="5"/></g><rect x="0" y="310" width="640" height="50" fill="#0f1723"/></svg>
+          <span class="ftv-vcard__tag">城市</span><span class="ftv-vcard__time">14:22</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">便利店的三点零七分</h3>
+          <p class="ftv-vcard__desc">夜班店员与常客之间的默契，从一盒临期饭团开始。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#3f6a8a;">何</span><span>何一舟</span><span>· 播放 18.3 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 6200</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="关系">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《我们之间隔着一堵墙》封面：对半分色墙面"><defs><linearGradient id="ftvS2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d98f7e"/><stop offset="1" stop-color="#6c8fa8"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS2)"/><line x1="320" y1="0" x2="320" y2="360" stroke="#fff" stroke-opacity="0.5" stroke-width="4"/><g fill="#fff" opacity="0.18"><circle cx="180" cy="180" r="60"/><circle cx="460" cy="180" r="60"/></g></svg>
+          <span class="ftv-vcard__tag">关系</span><span class="ftv-vcard__time">11:08</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">我们之间隔着一堵墙</h3>
+          <p class="ftv-vcard__desc">合租第三年，两个人在墙的两侧各自练习如何告别。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#b36e5e;">温</span><span>温其</span><span>· 播放 22.7 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 8800</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="纪录">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《修表匠的六十年》封面：暖褐桌面与齿轮"><defs><linearGradient id="ftvS3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9c6d3c"/><stop offset="1" stop-color="#3f2a16"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS3)"/><g fill="none" stroke="#f0d9a8" stroke-opacity="0.6" stroke-width="3"><circle cx="250" cy="180" r="70"/><circle cx="250" cy="180" r="30"/><circle cx="430" cy="180" r="52"/></g><g stroke="#f0d9a8" stroke-opacity="0.35" stroke-width="2"><path d="M250 110v30M250 220v30M180 180h30M290 180h30M430 128v20M430 212v20"/></g></svg>
+          <span class="ftv-vcard__tag">纪录</span><span class="ftv-vcard__time">27:40</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">修表匠的六十年</h3>
+          <p class="ftv-vcard__desc">一家开在巷口的老钟表店，和它守了六十年的主人。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#8a5a25;">顾</span><span>顾禾生</span><span>· 播放 31.2 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 1.4万</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="实验">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《一段被倒放的告白》封面：镜像几何色块"><defs><linearGradient id="ftvS4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5ea7"/><stop offset="1" stop-color="#2a2350"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS4)"/><g fill="#e4dbff" opacity="0.32"><rect x="90" y="90" width="150" height="180" rx="8"/><rect x="400" y="90" width="150" height="180" rx="8" transform="rotate(14 475 180)"/></g><path d="M320 0v360" stroke="#fff" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="8 10"/></svg>
+          <span class="ftv-vcard__tag">实验</span><span class="ftv-vcard__time">08:14</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">一段被倒放的告白</h3>
+          <p class="ftv-vcard__desc">如果语言倒过来再说一遍，意思会不会也反过来。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#6a4f95;">商</span><span>商临</span><span>· 播放 9.7 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 4300</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="城市">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《雨停之前不要走》封面：蓝绿雨幕街景"><defs><linearGradient id="ftvS5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b6b6f"/><stop offset="1" stop-color="#16292c"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS5)"/><g stroke="#bfe4e6" stroke-opacity="0.35" stroke-width="2"><path d="M60 0l-20 360M140 0l-20 360M220 0l-20 360M300 0l-20 360M380 0l-20 360M460 0l-20 360M540 0l-20 360"/></g><circle cx="500" cy="90" r="52" fill="#d9f2f3" opacity="0.28"/></svg>
+          <span class="ftv-vcard__tag">城市</span><span class="ftv-vcard__time">16:30</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">雨停之前不要走</h3>
+          <p class="ftv-vcard__desc">一场雨把两个赶路的人困在了同一个屋檐下。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#2f6a6e;">郁</span><span>郁青</span><span>· 播放 15.5 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 7100</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="关系">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《母亲的口红》封面：暖粉化妆镜"><defs><linearGradient id="ftvS6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d98fa6"/><stop offset="1" stop-color="#8e3f5a"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS6)"/><circle cx="320" cy="180" r="120" fill="#fff0f4" opacity="0.2"/><rect x="300" y="110" width="40" height="120" rx="20" fill="#ffe1e9" opacity="0.65"/><path d="M300 110h40l-8-30h-24z" fill="#ffc9d6" opacity="0.8"/></svg>
+          <span class="ftv-vcard__tag">关系</span><span class="ftv-vcard__time">13:57</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">母亲的口红</h3>
+          <p class="ftv-vcard__desc">女儿在整理旧物时，发现了母亲年轻时的另一副面孔。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#a7576f;">江</span><span>江迟</span><span>· 播放 26.9 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 1.2万</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="纪录">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《菜市场的清晨五点》封面：青绿菜摊与晨光"><defs><linearGradient id="ftvS7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6f9c58"/><stop offset="1" stop-color="#2f4a24"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS7)"/><g fill="#e9f4d6" opacity="0.4"><circle cx="150" cy="200" r="46"/><circle cx="230" cy="220" r="34"/><circle cx="470" cy="210" r="52"/><circle cx="550" cy="230" r="30"/></g><rect x="0" y="290" width="640" height="70" fill="#22381a" opacity="0.8"/></svg>
+          <span class="ftv-vcard__tag">纪录</span><span class="ftv-vcard__time">24:12</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">菜市场的清晨五点</h3>
+          <p class="ftv-vcard__desc">跟着一位卖菜三十年的阿姨，看她如何开始每一天。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#4c7439;">罗</span><span>罗青禾</span><span>· 播放 12.4 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 5300</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="实验">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《第八个梦》封面：深紫梦境漩涡"><defs><radialGradient id="ftvS8" cx="50%" cy="50%" r="65%"><stop offset="0" stop-color="#c9a7f0"/><stop offset="0.6" stop-color="#5a3d96"/><stop offset="1" stop-color="#1c1236"/></radialGradient></defs><rect width="640" height="360" fill="url(#ftvS8)"/><g fill="none" stroke="#efe4ff" stroke-opacity="0.3" stroke-width="2"><circle cx="320" cy="180" r="40"/><circle cx="320" cy="180" r="80"/><circle cx="320" cy="180" r="120"/></g></svg>
+          <span class="ftv-vcard__tag">实验</span><span class="ftv-vcard__time">07:45</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">第八个梦</h3>
+          <p class="ftv-vcard__desc">八个互不相干的梦境，被同一个人反复梦见。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#5a3d96;">池</span><span>池砚</span><span>· 播放 8.1 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 3900</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ftv-vcard" data-ftv-cat="城市">
+        <div class="ftv-vcard__cover">
+          <svg viewBox="0 0 640 360" role="img" aria-label="视频《天台上的第七把椅子》封面：橙红天空与椅子剪影"><defs><linearGradient id="ftvS9" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e39a5c"/><stop offset="1" stop-color="#8c3f31"/></linearGradient></defs><rect width="640" height="360" fill="url(#ftvS9)"/><circle cx="480" cy="120" r="60" fill="#ffe0b0" opacity="0.55"/><g fill="#3a1c17" opacity="0.85"><rect x="120" y="230" width="34" height="90"/><rect x="150" y="210" width="8" height="110"/><rect x="190" y="230" width="34" height="90"/><rect x="220" y="210" width="8" height="110"/></g><rect x="0" y="320" width="640" height="40" fill="#2b1210"/></svg>
+          <span class="ftv-vcard__tag">城市</span><span class="ftv-vcard__time">19:03</span>
+        </div>
+        <div class="ftv-vcard__body">
+          <h3 class="ftv-vcard__title">天台上的第七把椅子</h3>
+          <p class="ftv-vcard__desc">六个人约好每年在天台聚一次，第七把椅子始终空着。</p>
+          <div class="ftv-vcard__meta">
+            <span class="ftv-vcard__avatar" style="background:#a9583e;">闻</span><span>闻舟</span><span>· 播放 20.6 万</span>
+            <div class="ftv-vcard__acts"><button class="ftv-vcard__act" data-ftv-like>赞 9400</button></div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="ftv-stream__empty" id="ftvStreamEmpty">该方向暂无内容，试试其他标签。</div>
+  </section>
+
+  <!-- 用户评价 -->
+  <section class="ftv-voices" id="ftv-voices" aria-labelledby="ftvVoicesTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Voices / 用户评价</div>
+      <h2 class="ftv-section-head__title" id="ftvVoicesTitle">观众与创作者怎么说</h2>
+      <p class="ftv-section-head__desc">以下内容来自社区真实反馈的整理与摘录。</p>
+    </div>
+    <div class="ftv-voices__grid">
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">追《旧书店的下午三点》追了四周，最打动我的是它没有刻意制造冲突。两个人只是坐着说话，但你能感觉到时间在流动。这种耐心在现在的内容里很少见了。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#c8324b;">阿</span><div><div class="ftv-voice__name">阿弦</div><div class="ftv-voice__role">观众 · 追更 4 周</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">作为创作者，我最看重的是平台的评审反馈。投稿之后会收到具体到时间码的建议，不是一句「不合适」就结束了。这让我第二次投稿时改进得很明确。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#5a4f9e;">小</span><div><div class="ftv-voice__name">小满不加班</div><div class="ftv-voice__role">创作者 · 入驻 8 个月</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">画质和声音是真的稳定。有些平台同一部剧不同集数音轨忽大忽小，这里没有这个问题。字幕也校对过，不会出现明显的错字。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#3f6a8a;">南</span><div><div class="ftv-voice__name">南岸旧书</div><div class="ftv-voice__role">观众 · 注册 2 年</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">专题企划的组织方式我很喜欢，一个主题下几部片子互相呼应，看完一部会想接着看下一部。比无目的地刷推荐流舒服很多。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#b8752a;">柚</span><div><div class="ftv-voice__name">柚子茶不加冰</div><div class="ftv-voice__role">观众 · 专题收藏 12 个</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">评论区氛围比我想象中好。上次我提了一个镜头细节的疑问，底下有三个人认真回复，还有人贴了导演的访谈截图。这种讨论质量挺难得的。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#4c7439;">温</span><div><div class="ftv-voice__name">温吞水</div><div class="ftv-voice__role">观众 · 活跃评论者</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">扶持计划帮我解决了前期设备的问题，也给了首页曝光。我的第一部短片上线那天，播放量比预期高了十几倍，那晚我一直在刷新后台。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#8c2f45;">陈</span><div><div class="ftv-voice__name">陈述句</div><div class="ftv-voice__role">创作者 · 扶持计划一期</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">我给爸妈推荐了《修表匠的六十年》，他们居然看完了，还跟我聊了很久他们年轻时的手艺活。一部短片能让两代人有话说，这挺好。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#6a4f95;">林</span><div><div class="ftv-voice__name">林间有风</div><div class="ftv-voice__role">观众 · 家庭共享账号</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">希望以后能多一些幕后内容。有些片子的拍摄花絮比正片还有意思，比如《末班地铁》那个长镜头到底怎么拍的，我一直很好奇。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#2f6a6e;">三</span><div><div class="ftv-voice__name">三点半下班</div><div class="ftv-voice__role">观众 · 建议反馈</div></div></div>
+      </div>
+      <div class="ftv-voice">
+        <p class="ftv-voice__text">投稿流程写得挺清楚，从素材规格到命名规则都有说明，省了不少来回沟通的时间。对于第一次投稿的人来说，这点很关键。</p>
+        <div class="ftv-voice__who"><span class="ftv-voice__ava" style="background:#a7576f;">编</span><div><div class="ftv-voice__name">编剧老唐</div><div class="ftv-voice__role">创作者 · 首次投稿</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 企业动态 + 榜单 -->
+  <section class="ftv-split" id="ftv-news" aria-labelledby="ftvNewsTitle">
+    <div class="ftv-news">
+      <div class="ftv-section-head" style="margin-bottom:14px;">
+        <div class="ftv-section-head__kicker">News / 企业动态</div>
+        <h2 class="ftv-section-head__title" id="ftvNewsTitle" style="font-size:22px;">品牌官方发布与内容更新</h2>
+      </div>
+      <div class="ftv-news__list">
+        <div class="ftv-news__item">
+          <div class="ftv-news__date">11/19</div>
+          <div>
+            <div class="ftv-news__title">「霜降之后」第四集上线，同步开放幕后花絮</div>
+            <p class="ftv-news__desc">本集拍摄于城西一家即将歇业的旧书店，采用自然光与实景收音，幕后花絮包含导演与摄影的现场沟通记录。</p>
+          </div>
+        </div>
+        <div class="ftv-news__item">
+          <div class="ftv-news__date">11/17</div>
+          <div>
+            <div class="ftv-news__title">2026 冬季创作挑战赛报名通道开启</div>
+            <p class="ftv-news__desc">本届主题为「我的一天」，面向全体注册创作者开放报名，参赛作品需为原创剧情短片，时长 3 至 15 分钟。</p>
+          </div>
+        </div>
+        <div class="ftv-news__item">
+          <div class="ftv-news__date">11/15</div>
+          <div>
+            <div class="ftv-news__title">创作者扶持计划第二期启动，扶持名额 60 位</div>
+            <p class="ftv-news__desc">本期新增设备支持与后期协作资源，入选创作者将获得首页曝光位与专属内容顾问对接。</p>
+          </div>
+        </div>
+        <div class="ftv-news__item">
+          <div class="ftv-news__date">11/12</div>
+          <div>
+            <div class="ftv-news__title">影像开放日·上海站报名开启，限额 120 人</div>
+            <p class="ftv-news__desc">活动包含创作者对谈、作品放映与现场交流三个环节，报名需提交一段简短的个人创作说明。</p>
+          </div>
+        </div>
+        <div class="ftv-news__item">
+          <div class="ftv-news__date">11/06</div>
+          <div>
+            <div class="ftv-news__title">内容技术规范 v2.3 发布，优化字幕与音量建议</div>
+            <p class="ftv-news__desc">新版规范对字幕字号、停留时长与对白环境音比例给出更明确的建议值，已在帮助中心同步更新。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="ftv-rank" aria-labelledby="ftvRankTitle">
+      <h2 id="ftvRankTitle">本周热度榜</h2>
+      <p class="ftv-rank__sub">按七日播放与互动综合排序</p>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">1</span><div><div class="ftv-rank__name">旧书店的下午三点</div><div class="ftv-rank__tag">城市剧情 · 更新中</div></div><span class="ftv-rank__heat">98.6</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">2</span><div><div class="ftv-rank__name">修表匠的六十年</div><div class="ftv-rank__tag">纪录式剧情 · 完结</div></div><span class="ftv-rank__heat">94.1</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">3</span><div><div class="ftv-rank__name">母亲的口红</div><div class="ftv-rank__tag">人物关系 · 完结</div></div><span class="ftv-rank__heat">91.7</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">4</span><div><div class="ftv-rank__name">我们之间隔着一堵墙</div><div class="ftv-rank__tag">人物关系 · 完结</div></div><span class="ftv-rank__heat">88.3</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">5</span><div><div class="ftv-rank__name">天台上的第七把椅子</div><div class="ftv-rank__tag">城市剧情 · 新上线</div></div><span class="ftv-rank__heat">85.9</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">6</span><div><div class="ftv-rank__name">便利店的三点零七分</div><div class="ftv-rank__tag">城市剧情 · 完结</div></div><span class="ftv-rank__heat">82.4</span></div>
+      <div class="ftv-rank__item"><span class="ftv-rank__no">7</span><div><div class="ftv-rank__name">雨停之前不要走</div><div class="ftv-rank__tag">城市剧情 · 完结</div></div><span class="ftv-rank__heat">79.6</span></div>
+    </aside>
+  </section>
+
+  <!-- FAQ -->
+  <section class="ftv-faq" id="ftv-faq" aria-labelledby="ftvFaqTitle">
+    <div class="ftv-section-head">
+      <div class="ftv-section-head__kicker">Help / 帮助中心</div>
+      <h2 class="ftv-section-head__title" id="ftvFaqTitle">常见问题</h2>
+      <p class="ftv-section-head__desc">关于品牌、内容与创作流程的高频问题，点击展开查看。</p>
+    </div>
+    <div class="ftv-faq__grid">
+      <details open>
+        <summary>腐剧tv入口是一个什么样的平台？</summary>
+        <p class="ftv-faq__ans">腐剧tv入口是一个以原创剧情影像为核心的企业级视频内容平台，官方网站集中呈现品牌信息、精品内容、创作者矩阵与官方动态。平台坚持正版、高清的内容标准，并为创作者提供从投稿到发布的稳定通道。</p>
+      </details>
+      <details>
+        <summary>如何成为平台创作者并投稿？</summary>
+        <p class="ftv-faq__ans">点击页面中的「创作者投稿入口」填写基本信息与作品链接，内容团队会在五个工作日内给出反馈。通过初审后即可获得创作者账号，享有内容发布、数据查看与专题参与权限。</p>
+      </details>
+      <details>
+        <summary>投稿对作品规格有什么要求？</summary>
+        <p class="ftv-faq__ans">画面建议 1080P 及以上，横屏 16:9 或竖屏 9:16 均可；音频需避免明显削波；字幕请提供可编辑文件。具体技术规范可在帮助中心查阅最新版本，我们会定期更新建议值。</p>
+      </details>
+      <details>
+        <summary>创作者扶持计划包含哪些支持？</summary>
+        <p class="ftv-faq__ans">扶持计划包含前期制作资源支持、首页曝光位、专属内容顾问对接以及后期协作资源。每期名额有限，评选侧重选题完整度与执行可行性，而非粉丝数量。</p>
+      </details>
+      <details>
+        <summary>平台如何保证内容品质？</summary>
+        <p class="ftv-faq__ans">所有上架内容需经过选题评估、成片审看、字幕校对与画面规范四道流程。我们对调色、音量、字幕等技术细节有公开建议标准，以确保连续观看的舒适度。</p>
+      </details>
+      <details>
+        <summary>是否支持品牌与内容方合作？</summary>
+        <p class="ftv-faq__ans">支持。我们坚持「内容先行、植入在后」的原则，合作形式包括专题共创、品牌短片定制与创作者联合企划。可通过页面底部的合作联系邮箱提交需求说明。</p>
+      </details>
+      <details>
+        <summary>观众可以参与社区讨论吗？</summary>
+        <p class="ftv-faq__ans">可以。注册用户可对内容进行评论、点赞与收藏，并参与专题投票。社区鼓励具体、有信息量的讨论，对人身攻击与无依据的指控会进行治理。</p>
+      </details>
+      <details>
+        <summary>如何获取官方最新动态？</summary>
+        <p class="ftv-faq__ans">官方信息统一在本站企业动态板块发布，包括专题上线、活动报名、规范更新与年度规划。建议关注页面顶部公告条，重要更新会在此滚动提示。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 联系与投稿 -->
+  <section class="ftv-contact" id="ftv-contact" aria-labelledby="ftvContactTitle">
+    <div class="ftv-contact__panel">
+      <div>
+        <h2 id="ftvContactTitle">与腐剧tv入口一起，把故事讲完</h2>
+        <p>无论你是创作者、观众还是合作方，我们都愿意听见具体的声音。投稿、合作、反馈，都可以从这里开始。官方网站将持续更新品牌动态与内容规划。</p>
+        <div class="ftv-contact__meta">
+          <div><b>合作邮箱</b>brand@fujutv.example</div>
+          <div><b>投稿咨询</b>creator@fujutv.example</div>
+          <div><b>工作时间</b>周一至周五 10:00–19:00</div>
+        </div>
+      </div>
+      <div class="ftv-contact__actions">
+        <button class="ftv-btn ftv-btn--primary" data-ftv-open="submit">我要投稿</button>
+        <button class="ftv-btn ftv-btn--ghost" style="background:transparent;color:#ececf1;border-color:rgba(255,255,255,.3);" data-ftv-open="feedback">反馈建议</button>
+        <button class="ftv-btn ftv-btn--ghost" style="background:transparent;color:#ececf1;border-color:rgba(255,255,255,.3);" id="ftvShareBtn2">分享本站</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftv-footer">
+  <div class="ftv-footer__inner">
+    <div class="ftv-footer__top">
+      <div>
+        <div class="ftv-footer__brand">腐剧<em>tv</em>入口 官方网站</div>
+        <p class="ftv-footer__desc">腐剧tv入口是专注原创剧情影像的企业级内容平台，坚持正版、高清与品质标准，持续运营创作者社区与专题企划，致力于成为用户首选的剧情影像入口。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#ftv-focus">焦点内容</a></li>
+          <li><a href="#ftv-topics">专题企划</a></li>
+          <li><a href="#ftv-stream">热门影像</a></li>
+          <li><a href="#ftv-news">企业动态</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>创作者</h4>
+        <ul>
+          <li><a href="#ftv-makers">创作者矩阵</a></li>
+          <li><a href="#ftv-contact">投稿入口</a></li>
+          <li><a href="#ftv-faq">扶持计划</a></li>
+          <li><a href="#ftv-faq">技术规范</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于品牌</h4>
+        <ul>
+          <li><a href="#ftv-about">品牌故事</a></li>
+          <li><a href="#ftv-voices">用户口碑</a></li>
+          <li><a href="#ftv-faq">帮助中心</a></li>
+          <li><a href="#ftv-contact">合作联系</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftv-footer__bottom">
+      <span>© 2026 腐剧tv入口 官方网站 · 版权所有 · 持续运营中</span>
+      <span>品牌主体：腐剧tv入口（杭州）文化传媒有限公司 · 内容经营许可证 浙字第 2026-1188 号</span>
+    </div>
+  </div>
+</footer>
+
+<button class="ftv-backtop" id="ftvBackTop" aria-label="回到页面顶部">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="ftv-toast" id="ftvToast" role="status" aria-live="polite"></div>
+
+<!-- 投稿 / 反馈 / 作者弹窗 -->
+<div class="ftv-modal" id="ftvModal" role="dialog" aria-modal="true" aria-labelledby="ftvModalTitle">
+  <div class="ftv-modal__box">
+    <button class="ftv-modal__close" id="ftvModalClose" aria-label="关闭弹窗">×</button>
+    <h3 id="ftvModalTitle">提示</h3>
+    <p id="ftvModalDesc"></p>
+    <div id="ftvModalFormArea">
+      <div class="ftv-modal__field" id="ftvFieldName">
+        <label for="ftvInputName">你的称呼</label>
+        <input id="ftvInputName" type="text" placeholder="例如：林见微">
+      </div>
+      <div class="ftv-modal__field">
+        <label for="ftvInputContent">内容说明</label>
+        <textarea id="ftvInputContent" rows="3" placeholder="简要描述你的作品或建议"></textarea>
+      </div>
+      <button class="ftv-btn ftv-btn--primary ftv-modal__submit" id="ftvModalSubmit">提交</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var toastEl = document.getElementById('ftvToast');
+  var toastTimer = null;
+  function showToast(msg){
+    if(!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('is-show'); }, 2200);
+  }
+
+  /* 移动端导航折叠 */
+  var burger = document.getElementById('ftvBurger');
+  var nav = document.getElementById('ftvNav');
+  if(burger && nav){
+    burger.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.closest('.ftv-nav__link')){
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 导航高亮 */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.ftv-nav__link'));
+  navLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.forEach(function(l){ l.classList.remove('is-active'); });
+      link.classList.add('is-active');
+    });
+  });
+
+  /* 搜索前端反馈 */
+  var searchInput = document.getElementById('ftvSearchInput');
+  var searchBtn = document.getElementById('ftvSearchBtn');
+  var searchHint = document.getElementById('ftvSearchHint');
+  var searchCorpus = [
+    '旧书店的下午三点', '末班地铁的第七节', '厨房里的两个人', '她住在顶楼', '录音棚最后一夜',
+    '修表匠的六十年', '母亲的口红', '菜市场的清晨五点', '天台上的第七把椅子',
+    '霜降之后', '配角出列', '剧本的第一稿', '我的一天',
+    '林见微', '周与野', '苏禾', '沈知白', '陆声', '许未'
+  ];
+
+  function renderHint(keyword){
+    if(!searchHint) return;
+    var kw = (keyword || '').trim();
+    if(!kw){
+      searchHint.innerHTML = '';
+      searchHint.classList.remove('is-open');
+      return;
+    }
+    var matched = searchCorpus.filter(function(item){ return item.indexOf(kw) > -1; }).slice(0,6);
+    if(matched.length === 0){
+      searchHint.innerHTML = '<li>未找到「' + escapeHtml(kw) + '」，试试其他关键词</li>';
+    }else{
+      searchHint.innerHTML = matched.map(function(item){
+        return '<li data-kw="' + escapeHtml(item) + '">' + escapeHtml(item) + '</li>';
+      }).join('');
+    }
+    searchHint.classList.add('is-open');
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  if(searchInput){
+    searchInput.addEventListener('input', function(){ renderHint(searchInput.value); });
+    searchInput.addEventListener('focus', function(){ if(searchInput.value) renderHint(searchInput.value); });
+  }
+  if(searchBtn){
+    searchBtn.addEventListener('click', function(){
+      var kw = searchInput ? searchInput.value.trim() : '';
+      if(!kw){ showToast('请输入关键词后再搜索'); if(searchInput) searchInput.focus(); return; }
+      showToast('正在搜索「' + kw + '」相关内容');
+      renderHint(kw);
+    });
+  }
+  if(searchHint){
+    searchHint.addEventListener('click', function(e){
+      var li = e.target.closest('li');
+      if(!li) return;
+      var kw = li.getAttribute('data-kw');
+      if(kw && searchInput){
+        searchInput.value = kw;
+        showToast('已定位到「' + kw + '」');
+      }
+      searchHint.classList.remove('is-open');
+    });
+  }
+  document.addEventListener('click', function(e){
+    if(searchHint && !e.target.closest('.ftv-search')) searchHint.classList.remove('is-open');
+  });
+
+  /* 点赞 / 收藏 */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('[data-ftv-like]');
+    if(likeBtn){
+      var on = likeBtn.classList.toggle('is-on');
+      var text = likeBtn.textContent;
+      var numMatch = text.match(/([0-9.]+)(万?)/);
+      if(numMatch){
+        var n = parseFloat(numMatch[1]);
+        n = on ? n + 0.1 : Math.max(0, n - 0.1);
+        likeBtn.textContent = (on ? '已赞 ' : '赞 ') + n.toFixed(1).replace(/\.0$/,'') + numMatch[2];
+      }else{
+        likeBtn.textContent = on ? '已赞' : '赞';
+      }
+      showToast(on ? '已点赞' : '已取消点赞');
+      return;
+    }
+    var favBtn = e.target.closest('[data-ftv-fav]');
+    if(favBtn){
+      var favOn = favBtn.classList.toggle('is-on');
+      favBtn.textContent = favOn ? '已收藏' : '收藏';
+      showToast(favOn ? '已加入收藏' : '已取消收藏');
+    }
+  });
+
+  /* 内容方向筛选 */
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.ftv-chip'));
+  var streamCards = Array.prototype.slice.call(document.querySelectorAll('#ftvStreamGrid .ftv-vcard'));
+  var emptyTip = document.getElementById('ftvStreamEmpty');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('is-active'); c.setAttribute('aria-selected','false'); });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-selected','true');
+      var filter = chip.getAttribute('data-ftv-filter');
+      var shown = 0;
+      streamCards.forEach(function(card){
+        var cat = card.getAttribute('data-ftv-cat');
+        var match = filter === 'all' || cat === filter;
+        card.style.display = match ? '' : 'none';
+        if(match) shown++;
+      });
+      if(emptyTip) emptyTip.classList.toggle('is-show', shown === 0);
+      showToast('已筛选：' + chip.textContent);
+    });
+  });
+
+  /* 数字滚动 */
+  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-ftv-count]'));
+  function animateCounter(el){
+    var target = parseInt(el.getAttribute('data-ftv-count'), 10) || 0;
+    var start = 0, dur = 1200, t0 = null;
+    function step(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(start + (target - start) * eased).toLocaleString('zh-CN');
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window && counters.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          animateCounter(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.4});
+    counters.forEach(function(c){ io.observe(c); });
+  }else{
+    counters.forEach(animateCounter);
+  }
+
+  /* 回到顶部 */
+  var backTop = document.getElementById('ftvBackTop');
+  window.addEventListener('scroll', function(){
+    if(!backTop) return;
+    backTop.classList.toggle('is-show', window.scrollY > 520);
+  }, {passive:true});
+  if(backTop){
+    backTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* 弹窗 */
+  var modal = document.getElementById('ftvModal');
+  var modalTitle = document.getElementById('ftvModalTitle');
+  var modalDesc = document.getElementById('ftvModalDesc');
+  var modalFormArea = document.getElementById('ftvModalFormArea');
+  var modalClose = document.getElementById('ftvModalClose');
+  var modalSubmit = document.getElementById('ftvModalSubmit');
+  var inputName = document.getElementById('ftvInputName');
+  var inputContent = document.getElementById('ftvInputContent');
+  var fieldName = document.getElementById('ftvFieldName');
+  var currentMode = '';
+
+  function openModal(mode, data){
+    if(!modal) return;
+    currentMode = mode;
+    modal.classList.add('is-open');
+    if(mode === 'submit'){
+      modalTitle.textContent = '创作者投稿入口';
+      modalDesc.textContent = '填写基本信息，内容团队将在五个工作日内与你联系。';
+      if(modalFormArea) modalFormArea.style.display = '';
+      if(fieldName) fieldName.style.display = '';
+    }else if(mode === 'feedback'){
+      modalTitle.textContent = '反馈建议';
+      modalDesc.textContent = '你的反馈会直接进入内容团队的评估清单。';
+      if(modalFormArea) modalFormArea.style.display = '';
+      if(fieldName) fieldName.style.display = '';
+    }else if(mode === 'maker'){
+      modalTitle.textContent = (data && data.name ? data.name : '创作者') + ' · 创作者档案';
+      modalDesc.textContent = (data && data.bio ? data.bio : '') +
+        '　擅长领域：' + (data && data.field ? data.field : '—') +
+        '；作品 ' + (data && data.works ? data.works : '—') +
+        ' 部，关注 ' + (data && data.fans ? data.fans : '—') + '。';
+      if(modalFormArea) modalFormArea.style.display = 'none';
+    }
+    if(inputName) inputName.value = '';
+    if(inputContent) inputContent.value = '';
+  }
+
+  function closeModal(){
+    if(modal) modal.classList.remove('is-open');
+  }
+
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-ftv-open]');
+    if(trigger){
+      openModal(trigger.getAttribute('data-ftv-open'));
+      return;
+    }
+    var makerCard = e.target.closest('[data-ftv-maker]');
+    if(makerCard){
+      openModal('maker', {
+        name: makerCard.getAttribute('data-name'),
+        field: makerCard.getAttribute('data-field'),
+        works: makerCard.getAttribute('data-works'),
+        fans: makerCard.getAttribute('data-fans'),
+        bio: makerCard.getAttribute('data-bio')
+      });
+    }
+  });
+
+  if(modalClose) modalClose.addEventListener('click', closeModal);
+  if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  if(modalSubmit){
+    modalSubmit.addEventListener('click', function(){
+      var name = inputName ? inputName.value.trim() : '';
+      var content = inputContent ? inputContent.value.trim() : '';
+      if(!name){ showToast('请先填写称呼'); if(inputName) inputName.focus(); return; }
+      if(!content){ showToast('请填写内容说明'); if(inputContent) inputContent.focus(); return; }
+      closeModal();
+      showToast(currentMode === 'feedback' ? '反馈已提交，感谢你的建议' : '投稿信息已提交，请留意后续联系');
+    });
+  }
+
+  /* 复制链接 */
+  function copyLink(){
+    var url = window.location.href;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){
+        showToast('链接已复制，可分享给朋友');
+      }).catch(function(){
+        showToast('复制失败，请手动复制地址栏链接');
+      });
+    }else{
+      showToast('当前环境不支持自动复制，请手动复制地址栏链接');
+    }
+  }
+  var shareBtn = document.getElementById('ftvShareBtn');
+  var shareBtn2 = document.getElementById('ftvShareBtn2');
+  if(shareBtn) shareBtn.addEventListener('click', copyLink);
+  if(shareBtn2) shareBtn2.addEventListener('click', copyLink);
+
+})();
+</script>
+</body>
+      </html>
